@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Tobii.XR.Examples.GettingStarted
 {
     //Monobehaviour which implements the "IGazeFocusable" interface, meaning it will be called on when the object receives focus
-    public class HighlightAtGaze : ACharOutlet, IGazeFocusable
+    public class HighlightAtGaze : AStringOutlet, IGazeFocusable
     {
         private static readonly int _baseColor = Shader.PropertyToID("_BaseColor");
         public Color highlightColor = Color.red;
@@ -59,13 +59,13 @@ namespace Tobii.XR.Examples.GettingStarted
             if (_renderer.material.HasProperty(_baseColor)) // new rendering pipeline (lightweight, hd, universal...)
             {
                 _renderer.material.SetColor(_baseColor, Color.Lerp(_renderer.material.GetColor(_baseColor), _targetColor, Time.deltaTime * (1 / animationTime)));
-                sample[0] = 'a';
+                sample[0] = "Looking respectfully...";
                 return true;
             }
             else // old standard rendering pipline
             {
                 _renderer.material.color = Color.Lerp(_renderer.material.color, _targetColor, Time.deltaTime * (1 / animationTime));
-                sample[0] = 'b';
+                sample[0] = "Looking away";
                 return true;
             }
             return false;
