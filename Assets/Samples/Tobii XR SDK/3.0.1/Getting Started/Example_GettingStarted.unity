@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 109892054}
   m_Layer: 0
   m_Name: Gaze Focusable Object
-  m_TagString: Untagged
+  m_TagString: FocusableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,12 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8ae8d3a4961ee448341a6d5c1f92eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StreamName: Unity.Vive.Test
-  StreamType: Vive
-  moment: 0
-  IrregularRate: 0
+  LSLFocusableObjectBroadcastStream: {fileID: 1713190324}
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
-  channelName: Ch-one
   animationTime: 0.1
 --- !u!1001 &687676177
 PrefabInstance:
@@ -294,7 +290,7 @@ GameObject:
   - component: {fileID: 875648229}
   m_Layer: 0
   m_Name: Gaze Focusable Object
-  m_TagString: Untagged
+  m_TagString: FocusableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -311,12 +307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8ae8d3a4961ee448341a6d5c1f92eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StreamName: Unity.Vive.Test
-  StreamType: Vive
-  moment: 0
-  IrregularRate: 0
+  LSLFocusableObjectBroadcastStream: {fileID: 1713190324}
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
-  channelName: Ch-two
   animationTime: 0.1
 --- !u!23 &875648231
 MeshRenderer:
@@ -470,7 +462,7 @@ GameObject:
   - component: {fileID: 1293525706}
   m_Layer: 0
   m_Name: Gaze Focusable Object
-  m_TagString: Untagged
+  m_TagString: FocusableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,12 +479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8ae8d3a4961ee448341a6d5c1f92eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StreamName: Unity.Vive.Test
-  StreamType: Vive
-  moment: 0
-  IrregularRate: 0
+  LSLFocusableObjectBroadcastStream: {fileID: 1713190324}
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
-  channelName: Ch-three
   animationTime: 0.1
 --- !u!23 &1293525708
 MeshRenderer:
@@ -858,6 +846,56 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_UseRelativeTransform: 0
+--- !u!1 &1539377999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1539378001}
+  - component: {fileID: 1539378000}
+  m_Layer: 0
+  m_Name: LSLGazeRay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1539378000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539377999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec28ebb7f6ad85468635ef154149413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StreamName: EyeTracker
+  StreamType: Gaze
+  moment: 0
+  IrregularRate: 0
+  channelName1: x_direction
+  channelName2: y_direction
+  channelName3: z_direction
+--- !u!4 &1539378001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539377999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1598408213
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,6 +926,56 @@ Transform:
   - {fileID: 1536036229}
   m_Father: {fileID: 1498395508}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1713190324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1713190326}
+  - component: {fileID: 1713190325}
+  m_Layer: 0
+  m_Name: LSLFocusableObjectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1713190325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713190324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84217a641e8171d48b2bd7d57c521b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StreamName: ObjectPosition
+  StreamType: Position
+  moment: 0
+  IrregularRate: 0
+  channelName1: x_position
+  channelName2: y_position
+  channelName3: z_position
+--- !u!4 &1713190326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713190324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1876477517
 GameObject:
