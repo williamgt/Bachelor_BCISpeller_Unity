@@ -39,27 +39,36 @@ public class LSLGazeRayStream : ADoubleOutlet
 
             // The direction of the gaze ray is a normalized direction vector
             var rayDirection = eyeTrackingData.GazeRay.Direction;
+            Debug.Log("Direction, world " + rayDirection);
+
+            // The EyeBlinking bool is true when the eye is closed
+            var isLeftEyeBlinking = eyeTrackingData.IsLeftEyeBlinking;
+            var isRightEyeBlinking = eyeTrackingData.IsRightEyeBlinking;
+          
+            Debug.DrawRay(rayOrigin, rayDirection * 10, Color.red);
         }
 
         // For social use cases, data in local space may be easier to work with
         var eyeTrackingDataLocal = TobiiXR.GetEyeTrackingData(TobiiXR_TrackingSpace.Local);
 
-        // The EyeBlinking bool is true when the eye is closed
-        var isLeftEyeBlinking = eyeTrackingData.IsLeftEyeBlinking;
-        var isRightEyeBlinking = eyeTrackingData.IsRightEyeBlinking;
+        if (eyeTrackingData.GazeRay.IsValid)
+        {
+            // Using gaze direction in local space makes it easier to apply a local rotation
+            // to your virtual eye balls.
+            var eyesDirection = eyeTrackingDataLocal.GazeRay.Direction;
 
-        // Using gaze direction in local space makes it easier to apply a local rotation
-        // to your virtual eye balls.
-        var eyesDirection = eyeTrackingDataLocal.GazeRay.Direction;
+            //Debug.Log("BlilnkL " + isLeftEyeBlinking);
+            //Debug.Log("BlinkR " + isRightEyeBlinking);
+            Debug.Log("Direction, local " + eyesDirection);
 
-        //Debug.Log("BlilnkL " + isLeftEyeBlinking);
-        //Debug.Log("BlinkR " + isRightEyeBlinking);
-        Debug.Log("Direction " + eyesDirection);
+            sample[0] = eyesDirection.x;
+            sample[1] = eyesDirection.y;
+            sample[2] = eyesDirection.z;
 
-        sample[0] = eyesDirection.x;
-        sample[1] = eyesDirection.y;
-        sample[2] = eyesDirection.z;
+            return true;
 
-        return true;
+        }
+
+        return false;
     }
 }
