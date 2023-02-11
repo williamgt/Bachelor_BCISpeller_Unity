@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 1539378001}
   - component: {fileID: 1539378000}
   m_Layer: 0
-  m_Name: LSLGazeRay
+  m_Name: LSLGazeRayAndBlinking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -882,6 +882,9 @@ MonoBehaviour:
   channelName1: x_direction
   channelName2: y_direction
   channelName3: z_direction
+  channelName4: left_blink
+  channelName5: right_blink
+  channelName6: both_blink
 --- !u!4 &1539378001
 Transform:
   m_ObjectHideFlags: 0
