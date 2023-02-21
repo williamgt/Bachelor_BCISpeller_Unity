@@ -54,8 +54,8 @@ public class LSLGazeRayAndBlinkingStream : ADoubleOutlet
         // For social use cases, data in local space may be easier to work with
         var eyeTrackingDataLocal = TobiiXR.GetEyeTrackingData(TobiiXR_TrackingSpace.Local);
 
-        if (eyeTrackingData.GazeRay.IsValid)
-        {
+        //if (eyeTrackingData.GazeRay.IsValid)
+        //{
             // Using gaze direction in local space makes it easier to apply a local rotation
             // to your virtual eye balls.
             var eyesDirection = eyeTrackingDataLocal.GazeRay.Direction;
@@ -78,7 +78,7 @@ public class LSLGazeRayAndBlinkingStream : ADoubleOutlet
 
             return true;
 
-        }
+        //}
 
         return false;
     }

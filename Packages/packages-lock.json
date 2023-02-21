@@ -8,7 +8,7 @@
       "hash": "a3096a95c8de3bcfb2ff2216e7607ed1b2efd642"
     },
     "com.tobii.xr.sdk": {
-      "version": "file:C:/Users/vizlab_stud/Downloads/TobiiXRSDK_3.0.1.179",
+      "version": "file:E:/idatt2900_gr92/TobiiXRSDK_3.0.1.179",
       "depth": 0,
       "source": "local",
       "dependencies": {
@@ -129,7 +129,7 @@
       "url": "https://packages.unity.com"
     },
     "com.valvesoftware.unity.openvr": {
-      "version": "file:C:/Users/vizlab_stud/Downloads/com.valvesoftware.unity.openvr-1.1.4.tgz",
+      "version": "file:E:/idatt2900_gr92/com.valvesoftware.unity.openvr-1.1.4.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
