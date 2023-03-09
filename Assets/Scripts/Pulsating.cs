@@ -6,11 +6,14 @@ public class Pulsating : MonoBehaviour
 {
     public float rate = 0f;
 
+    private float freq = -1f; //TODO this is just a helper implementation for seeing the frequency, remove later. Is -1 if color is white and 1 if color is red
+
     private float elapsedTime = 0;
 
     private Renderer renderer;
     private Color color1;
     private Color color2;
+
     void Start()
     {
         renderer = GetComponent<Renderer>();
@@ -19,11 +22,16 @@ public class Pulsating : MonoBehaviour
     }
     void Update()
     {
+
+        freq = renderer.material.color == Color.white ? -1f : 1f;
+
+        //Don't change color if no rate is set
         if (rate <= 0)
         {
             renderer.material.color = Color.white;
             return;
         }
+        
         elapsedTime += Time.deltaTime;
      
         renderer.material.color = color1;
@@ -44,4 +52,6 @@ public class Pulsating : MonoBehaviour
     {
         rate = newRate;
     }
+
+    public float getFreq() => freq;
 }
