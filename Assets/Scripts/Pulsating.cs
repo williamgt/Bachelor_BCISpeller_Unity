@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Pulsating : MonoBehaviour
 {
-    public float rate = 0f;
+    public float rate = 0f; //The rate at which the object is pulsating, aka the frequency
 
     private float freq = -1f; //TODO this is just a helper implementation for seeing the frequency, remove later. Is -1 if color is white and 1 if color is red
+    private float samplingFreq = 250;
 
     private float elapsedTime = 0;
 
@@ -54,4 +55,17 @@ public class Pulsating : MonoBehaviour
     }
 
     public float getFreq() => freq;
+
+    //Calculates the proper value for the nth elements in the Y vector of SSVEP regime https://www.mdpi.com/1424-8220/20/3/891
+    //In this setup, there are used three harmonics harmonics
+    public (float sinh1, float cosh1, float sinh2, float cosh2, float sinh3, float cosh3) getYElement(int samplePoint)
+    {
+        return (
+            sinh1: Mathf.Sin(1 * 2 * Mathf.PI * rate * (samplePoint / samplingFreq)),
+            cosh1: Mathf.Cos(1 * 2 * Mathf.PI * rate * (samplePoint / samplingFreq)),
+            sinh2: Mathf.Sin(2 * 2 * Mathf.PI * rate * (samplePoint / samplingFreq)), 
+            cosh2: Mathf.Cos(2 * 2 * Mathf.PI * rate * (samplePoint / samplingFreq)),
+            sinh3: Mathf.Sin(3 * 2 * Mathf.PI * rate * (samplePoint / samplingFreq)), 
+            cosh3: Mathf.Cos(3 * 2 * Mathf.PI * rate * (samplePoint / samplingFreq)));
+    }
 }

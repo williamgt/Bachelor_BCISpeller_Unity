@@ -57,6 +57,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  LSLFrequencyOutlet: {fileID: 0}
 --- !u!65 &6209589634692683032
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -87,7 +88,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137723438509634646, guid: c9cad0ad020b4e045a7d1cbdc0a3a9e7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 137723438509634646, guid: c9cad0ad020b4e045a7d1cbdc0a3a9e7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -149,7 +150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137723438509634646, guid: c9cad0ad020b4e045a7d1cbdc0a3a9e7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.25
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 137723438509634646, guid: c9cad0ad020b4e045a7d1cbdc0a3a9e7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -273,7 +274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137723438509634646, guid: c9cad0ad020b4e045a7d1cbdc0a3a9e7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 137723438509634646, guid: c9cad0ad020b4e045a7d1cbdc0a3a9e7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -397,7 +398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137723438509634646, guid: c9cad0ad020b4e045a7d1cbdc0a3a9e7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.25
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 137723438509634646, guid: c9cad0ad020b4e045a7d1cbdc0a3a9e7, type: 3}
       propertyPath: m_LocalPosition.z
