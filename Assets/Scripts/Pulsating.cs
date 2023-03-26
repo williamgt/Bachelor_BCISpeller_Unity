@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Pulsating : MonoBehaviour
 {
     public float rate = 0f; //The rate at which the object is pulsating, aka the frequency
+    public string letter;
+    public TextMeshProUGUI TMPLetter;
 
     private float freq = -1f; //TODO this is just a helper implementation for seeing the frequency, remove later. Is -1 if color is white and 1 if color is red
     private float samplingFreq = 250;
@@ -20,6 +23,7 @@ public class Pulsating : MonoBehaviour
         renderer = GetComponent<Renderer>();
         color2 = Color.red;
         color1 = renderer.material.color;
+        TMPLetter.text = letter;
     }
     void Update()
     {
@@ -55,6 +59,7 @@ public class Pulsating : MonoBehaviour
     }
 
     public float getFreq() => freq;
+    public string getLetter() => letter;
 
     //Calculates the proper value for the nth elements in the Y vector of SSVEP regime https://www.mdpi.com/1424-8220/20/3/891
     //In this setup, there are used three harmonics harmonics

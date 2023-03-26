@@ -43,12 +43,13 @@ public class LSLFrequencyOutlet : ADoubleOutlet
         foreach (Transform child in cluster.transform)
         {
             //sample[i] = child.gameObject.GetComponent<Pulsating>().getFreq();
-            sample[i] = child.gameObject.GetComponent<Pulsating>().getYElement(samplePoint).sinh1;
-            sample[i + 1] = child.gameObject.GetComponent<Pulsating>().getYElement(samplePoint).cosh1;
-            sample[i + 2] = child.gameObject.GetComponent<Pulsating>().getYElement(samplePoint).sinh2;
-            sample[i + 3] = child.gameObject.GetComponent<Pulsating>().getYElement(samplePoint).cosh2;
-            sample[i + 4] = child.gameObject.GetComponent<Pulsating>().getYElement(samplePoint).sinh3;
-            sample[i + 5] = child.gameObject.GetComponent<Pulsating>().getYElement(samplePoint).cosh3;
+            var yValues = child.gameObject.GetComponent<Pulsating>().getYElement(samplePoint);
+            sample[i] = yValues.sinh1;
+            sample[i + 1] = yValues.cosh1;
+            sample[i + 2] = yValues.sinh2;
+            sample[i + 3] = yValues.cosh2;
+            sample[i + 4] = yValues.sinh3;
+            sample[i + 5] = yValues.cosh3;
             i += 6;
         }
         //sample[6] = counter; //NBNBNBNBNB
