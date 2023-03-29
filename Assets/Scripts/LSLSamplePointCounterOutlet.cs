@@ -5,7 +5,7 @@ using LSL4Unity.Utils;
 
 public class LSLSamplePointCounterOutlet : ADoubleOutlet
 {
-    private float samplePoint = 0;
+    private float samplePoint = 0; //Trying to account for lag between VR headset and human visual system
     private bool incrementSamplePoint = false;
     public override List<string> ChannelNames
     {
@@ -22,9 +22,13 @@ public class LSLSamplePointCounterOutlet : ADoubleOutlet
         base.Start();
     }
 
+    override
+    protected void Update(){ } //Need to override Update because the BaseOutlet runs BuildSample in parent Update before checking which hook to use
+
     protected override bool BuildSample()
     {
         if (incrementSamplePoint) samplePoint++;
+        //Debug.Log("Samplepoint: " + samplePoint);
         sample[0] = samplePoint;
         return true;
     }

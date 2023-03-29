@@ -6,7 +6,7 @@ using UnityEngine;
 public class LSLFrequencyOutlet : ADoubleOutlet
 {
     private int samplePoint = 0;
-    private float counter = 0;
+    //private float counter = 0;
     public override List<string> ChannelNames
     {
         get

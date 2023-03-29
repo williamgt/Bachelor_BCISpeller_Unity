@@ -21,8 +21,8 @@ public class Pulsating : MonoBehaviour
     void Start()
     {
         renderer = GetComponent<Renderer>();
-        color2 = Color.red;
-        color1 = renderer.material.color;
+        color2 = Color.black;
+        color1 = Color.white;
         TMPLetter.text = letter;
     }
     void Update()
@@ -34,18 +34,21 @@ public class Pulsating : MonoBehaviour
         if (rate <= 0)
         {
             renderer.material.color = Color.white;
+            //TMPLetter.color = Color.black;
             return;
         }
         
         elapsedTime += Time.deltaTime;
      
         renderer.material.color = color1;
+        //TMPLetter.color = color2;
      
         //Change color after time has reached rate
         if (elapsedTime >= 1/rate)
         {
             elapsedTime = 0;
             renderer.material.color = color2;
+            //TMPLetter.color = color1;
 
             var temp = color1;
             color1 = color2;

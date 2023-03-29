@@ -26,11 +26,8 @@ public class LSLCCAInlet : AFloatInlet
     //When a stream is available
     protected override void OnStreamAvailable()
     {
-        Debug.Log("Inlet: " + ChannelNames);
+        Debug.Log("Inlet found a stream with channelnames:");
         foreach (var e in ChannelNames) Debug.Log(e);
-        if (ChannelCount == 1)
-            return;
-        Debug.Log("Inlet: " + "Found a stream!");
     }
 
     //Used as update or fixed update or late update

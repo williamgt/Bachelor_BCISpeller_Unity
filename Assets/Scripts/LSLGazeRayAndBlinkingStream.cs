@@ -39,6 +39,9 @@ namespace ViveSR
                     base.Start();
                 }
 
+                override
+                protected void Update(){ } //Need to override Update because the BaseOutlet runs BuildSample in parent Update before checking which hook to use
+
                 protected override bool BuildSample()
                 {
                     //Getting data from SRAnipal about eye openness
