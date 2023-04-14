@@ -19,6 +19,7 @@ public class ClusterManager : MonoBehaviour
     private bool startPulsating = false;
     private bool stopPulsating = true;
     private bool activated = false;
+    private bool alwaysRun = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class ClusterManager : MonoBehaviour
         if(blinkContiniously)
         {
             startLSLInletAndOutlet();
+            alwaysRun = true;
             return;
         }
         //User is not looking at cluster, reset evreything to prepare for next time gaze is detected

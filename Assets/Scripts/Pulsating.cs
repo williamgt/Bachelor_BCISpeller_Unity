@@ -17,6 +17,8 @@ public class Pulsating : MonoBehaviour
     private Renderer renderer;
     private Color color1;
     private Color color2;
+    public Material material1;
+    public Material material2;
 
     private float frequency = 2f;
     private bool isWhite = false;
@@ -43,6 +45,43 @@ public class Pulsating : MonoBehaviour
     void Update()
     {
 
+        //changeColor();
+        //MakeFlicker();
+        changeMaterial();
+    }
+    private void changeMaterial()
+    {
+        Debug.Log("changeMaterial");
+
+        //Let material be white if no flickering rate
+        if (rate <= 0)
+        {
+            renderer.material = material1;
+            //TMPLetter.color = Color.black;
+            return;
+        }
+
+        elapsedTime += Time.deltaTime;
+
+        renderer.material = material1;
+        //TMPLetter.color = color2;
+
+        //Change color after time has reached rate
+        if (elapsedTime >= 1 / (rate * 2))
+        {
+            elapsedTime = 0;
+            renderer.material = material2;
+            //TMPLetter.color = color1;
+
+            var temp = material1;
+            material1 = material2;
+            material2 = temp;
+        }
+    }
+
+    private void changeColor()
+    {
+        Debug.Log("changeColor");
         freq = renderer.material.color == Color.white ? -1f : 1f;
 
         //Don't change color if no rate is set
@@ -52,14 +91,14 @@ public class Pulsating : MonoBehaviour
             //TMPLetter.color = Color.black;
             return;
         }
-        
+
         elapsedTime += Time.deltaTime;
-     
+
         renderer.material.color = color1;
         //TMPLetter.color = color2;
-     
+
         //Change color after time has reached rate
-        if (elapsedTime >= 1/rate)
+        if (elapsedTime >= 1 / rate)
         {
             elapsedTime = 0;
             renderer.material.color = color2;
@@ -69,6 +108,44 @@ public class Pulsating : MonoBehaviour
             color1 = color2;
             color2 = temp;
         }
+    }
+
+    //Yoinked from https://github.com/ryanlintott/SSVEP_keyboard
+    private void MakeFlicker()
+    {
+        Debug.Log("MakeFlicker");
+        // old equation (I was making my own time.time for some reason)
+        //dtime += Time.deltaTime;
+        //float wave = Mathf.Sin( (dtime * 2.0f * Mathf.PI) * cycleHz);
+
+        // Sin works on RAD not DEG.
+        // Sin wave flashing is best for SSVEP
+        // Time in seconds (mod to keep small values) * Pi (one sin wave per second) * cycleHz (cycleHz sin waves per second) / 2 (half a sin wave per cycleHz)
+        float colorMix = Mathf.InverseLerp(-1f, 1f, Mathf.Sin((Time.time % 10.0f) * Mathf.PI * rate * 2.0f));
+
+        renderer.material.color = Color.Lerp(color1, color2, colorMix);
+
+        // Count cycles (also used if I want full flashing colours insetad of smooth sin wave)
+        /*if (colorMix > 0.5f)
+        {
+            //_spriteRenderer.color = c1;
+            if (swap)
+            {
+                //updateCounter++;
+                swap = false;
+            }
+        }
+        else
+        {
+            //_spriteRenderer.color = c2;
+            swap = true;
+        }*/
+
+        //Debug.LogFormat("Cycle Count = {0}", updateCounter);
+        //Debug.LogFormat("Accuracy = {0}", Time.time - (updateCounter / cycleHz));
+
+        //Debug.Log("Seconds: " + Time.time.ToString() + " Flashes: " + updateCounter.ToString() + " Hz expected: " + cycleHz.ToString() + " Hz actual: " + (updateCounter / Time.time).ToString());
+        //Debug.Log((1/Time.deltaTime).ToString());
     }
 
     public void setRate(float newRate)

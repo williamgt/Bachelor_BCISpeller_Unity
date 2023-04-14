@@ -112,6 +112,8 @@ MonoBehaviour:
   rate: 0
   letter: 
   TMPLetter: {fileID: 3870642810298295083}
+  material1: {fileID: 2100000, guid: 4ba45bf45c9b4204e874f73d857c1462, type: 2}
+  material2: {fileID: 2100000, guid: 31bd6a0563bd6a245a16409549bff434, type: 2}
 --- !u!1 &2880751844956685335
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +289,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
