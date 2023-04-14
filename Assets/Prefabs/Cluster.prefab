@@ -57,6 +57,13 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  letters:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   clusterManager: {fileID: 0}
 --- !u!65 &6209589634692683032
 BoxCollider:

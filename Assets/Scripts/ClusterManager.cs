@@ -12,14 +12,13 @@ public class ClusterManager : MonoBehaviour
     private List<float> currentPulses;
     private bool blinkContiniously = false;
 
-    private float pulsatingLimitSeconds = 6.0f;
+    public float pulsatingLimitSeconds = 6.0f;
     private float deadTime = 1.0f;
     private float timeSpent = 0.0f;
 
     private bool startPulsating = false;
     private bool stopPulsating = true;
     private bool activated = false;
-    private bool alwaysRun = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +38,8 @@ public class ClusterManager : MonoBehaviour
     {
         if(blinkContiniously)
         {
+            activateFlickering();
             startLSLInletAndOutlet();
-            alwaysRun = true;
             return;
         }
         //User is not looking at cluster, reset evreything to prepare for next time gaze is detected
@@ -58,6 +57,7 @@ public class ClusterManager : MonoBehaviour
         startPulsating = timeSpent >= deadTime;
         if (startPulsating & !activated)
         {
+            activateFlickering();
             startLSLInletAndOutlet();
             activated = true;
         }
@@ -66,6 +66,7 @@ public class ClusterManager : MonoBehaviour
         stopPulsating = timeSpent >= deadTime + pulsatingLimitSeconds;
         if (stopPulsating & activated)
         {
+            deactivateFlickering();
             stopLSLInletAndOutlet();
             timeSpent = 0.0f;
         }
@@ -82,6 +83,7 @@ public class ClusterManager : MonoBehaviour
     {
         if(GameObject.ReferenceEquals(currentCluster, oldCluster))
         {
+            deactivateFlickering();
             stopLSLInletAndOutlet();
             currentCluster = null;
         }
@@ -98,23 +100,41 @@ public class ClusterManager : MonoBehaviour
     {
         LSLCCAResultInlet.GetComponent<LSLCCAInlet>().setCluster(currentCluster);
         LSLFrequencyOutlet.GetComponent<LSLFrequencyOutlet>().setCluster(currentCluster);
-        int i = 0;
+        /*int i = 0;
         foreach (Transform child in currentCluster.transform)
         {
             child.gameObject.GetComponent<Pulsating>().setRate(currentPulses[i]);
             i++;
-        }
+        }*/
         LSLSamplePointCounterOutlet.GetComponent<LSLSamplePointCounterOutlet>().setIncrementSamplePoint(true);
     }
     private void stopLSLInletAndOutlet()
     {
         //LSLCCAResultInlet.GetComponent<LSLCCAInlet>().setCluster(null);
         LSLFrequencyOutlet.GetComponent<LSLFrequencyOutlet>().setCluster(null);
+        /*foreach (Transform child in currentCluster.transform)
+        {
+            child.gameObject.GetComponent<Pulsating>().setRate(0);
+        }*/
+        LSLSamplePointCounterOutlet.GetComponent<LSLSamplePointCounterOutlet>().setIncrementSamplePoint(false);
+        LSLSamplePointCounterOutlet.GetComponent<LSLSamplePointCounterOutlet>().resetSamplePoint();
+    }
+
+    private void activateFlickering()
+    {
+        int i = 0;
+        foreach (Transform child in currentCluster.transform)
+        {
+            child.gameObject.GetComponent<Pulsating>().setRate(currentPulses[i]);
+            i++;
+        }
+    }
+
+    private void deactivateFlickering()
+    {
         foreach (Transform child in currentCluster.transform)
         {
             child.gameObject.GetComponent<Pulsating>().setRate(0);
         }
-        LSLSamplePointCounterOutlet.GetComponent<LSLSamplePointCounterOutlet>().setIncrementSamplePoint(false);
-        LSLSamplePointCounterOutlet.GetComponent<LSLSamplePointCounterOutlet>().resetSamplePoint();
     }
 }

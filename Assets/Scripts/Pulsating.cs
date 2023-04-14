@@ -6,7 +6,7 @@ using UnityEngine;
 public class Pulsating : MonoBehaviour
 {
     public float rate = 0f; //The rate at which the object is pulsating, aka the frequency
-    public string letter;
+    //public string letter;
     public TextMeshProUGUI TMPLetter;
 
     private float freq = -1f; //TODO this is just a helper implementation for seeing the frequency, remove later. Is -1 if color is white and 1 if color is red
@@ -28,7 +28,8 @@ public class Pulsating : MonoBehaviour
         renderer = GetComponent<Renderer>();
         color2 = Color.black;
         color1 = Color.white;
-        TMPLetter.text = letter;
+        //TMPLetter.text = letter;
+        renderer.material = material1;
         //StartCoroutine(Blink());
     }
 
@@ -42,7 +43,7 @@ public class Pulsating : MonoBehaviour
             yield return new WaitForSeconds(interval);
         }
     }
-    void Update()
+    void FixedUpdate()
     {
 
         //changeColor();
@@ -86,13 +87,13 @@ public class Pulsating : MonoBehaviour
         Debug.Log("changeMaterial2");
         float colorMix = Mathf.InverseLerp(-1f, 1f, Mathf.Sin((Time.time % 10.0f) * Mathf.PI * rate * 2.0f));
 
-        if (colorMix > 0.5f)
+        if (colorMix > 0.5f) //Not very smart implementation, setting material for each iteration of fixedupdate
          {
-             renderer.material = material1;
+             renderer.material = material2;
         }
         else
         {
-            renderer.material = material2;
+            renderer.material = material1;
         }
     }
 
@@ -170,8 +171,13 @@ public class Pulsating : MonoBehaviour
         rate = newRate;
     }
 
+    public void setLetter(string letter)
+    {
+        TMPLetter.text = letter;
+    }
+
     public float getFreq() => freq;
-    public string getLetter() => letter;
+    public string getLetter() => TMPLetter.text;
 
     //Calculates the proper value for the nth elements in the Y vector of SSVEP regime https://www.mdpi.com/1424-8220/20/3/891
     //In this setup, there are used three harmonics harmonics

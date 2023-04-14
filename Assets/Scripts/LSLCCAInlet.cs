@@ -38,7 +38,18 @@ public class LSLCCAInlet : AFloatInlet
         string letter = cluster.transform.GetChild(pos).GetComponent<Pulsating>().getLetter();
         Debug.Log(letter);                                      //Currently only allows new characters to be added
         //if(TMPWord.text[-1] != letter[0]) TMPWord.text += letter; //TODO make this better
-        if(!TMPWord.text.EndsWith(letter)) TMPWord.text += letter;
+        if (letter.Equals("<-") && TMPWord.text.Length > 0)
+        {
+            TMPWord.text.Remove(TMPWord.text.Length);
+        }
+        else if (letter.Equals("_"))
+        {
+            TMPWord.text += " ";
+        }
+        else
+        {
+            TMPWord.text += letter;
+        }
     }
 
     public void setCluster(GameObject newCluster)
