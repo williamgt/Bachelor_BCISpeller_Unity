@@ -18,12 +18,27 @@ public class Pulsating : MonoBehaviour
     private Color color1;
     private Color color2;
 
+    private float frequency = 2f;
+    private bool isWhite = false;
+
     void Start()
     {
         renderer = GetComponent<Renderer>();
         color2 = Color.black;
         color1 = Color.white;
         TMPLetter.text = letter;
+        //StartCoroutine(Blink());
+    }
+
+    IEnumerator Blink()
+    {
+        float interval = 1f / (frequency);
+        while (true)
+        {
+            isWhite = !isWhite;
+            renderer.material.color = isWhite ? Color.white : Color.black;
+            yield return new WaitForSeconds(interval);
+        }
     }
     void Update()
     {

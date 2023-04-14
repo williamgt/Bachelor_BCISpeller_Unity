@@ -234,7 +234,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &201550672
 GameObject:
@@ -448,7 +448,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -504,7 +504,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &326606176
 GameObject:
@@ -540,7 +540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.25, y: 2.25}
+  m_AnchoredPosition: {x: 1.19, y: 2.25}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &326606178
@@ -800,7 +800,7 @@ MonoBehaviour:
   LSLFrequencyOutlet: {fileID: 201550672}
   LSLSamplePointCounterOutlet: {fileID: 157818553}
   LSLCCAResultInlet: {fileID: 1632803178}
-  currentPulses: []
+  currentCluster: {fileID: 2135069490}
 --- !u!4 &425129134
 Transform:
   m_ObjectHideFlags: 0
@@ -999,13 +999,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783180363}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 326606177}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1054,7 +1054,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996175786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.2, y: 2.75, z: 6.21}
+  m_LocalPosition: {x: -5.6, y: 2.63, z: 6.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 423154079}
@@ -1068,6 +1068,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1483824241731922, guid: 596e593361e094a43934c013fa0b5764, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4789807657892548, guid: 596e593361e094a43934c013fa0b5764, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1315,19 +1319,19 @@ PrefabInstance:
       objectReference: {fileID: 201550672}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[0]
-      value: 13
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[1]
-      value: 14
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[2]
-      value: 16
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[3]
-      value: 18
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[4]
@@ -1391,3 +1395,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
+--- !u!1 &2135069490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8699205009714548438, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
+  m_PrefabInstance: {fileID: 1920730267}
+  m_PrefabAsset: {fileID: 0}

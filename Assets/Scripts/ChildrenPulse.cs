@@ -11,7 +11,7 @@ public class ChildrenPulse : MonoBehaviour, IGazeFocusable
     //public void GazeFocusChanged(bool hasFocus) => focus = hasFocus;
     public void GazeFocusChanged(bool hasFocus)
     {
-        if(hasFocus) clusterManager.GetComponent<ClusterManager>().clusterLookedAt(gameObject, pulses);
+        if(hasFocus) clusterManager.GetComponent<ClusterManager>().clusterLookedAt(gameObject);
         if(!hasFocus) clusterManager.GetComponent<ClusterManager>().clusterLookedAwayFrom(gameObject);
     }
 
@@ -21,4 +21,6 @@ public class ChildrenPulse : MonoBehaviour, IGazeFocusable
         if (transform.childCount > pulses.Count) throw new System.Exception("Must be enough pulse rates for the children of the cluster");
         if (clusterManager == null) throw new System.Exception("Cluster must have a manager");
     }
+
+    public List<float> getPulses() => pulses;
 }

@@ -8,8 +8,9 @@ public class ClusterManager : MonoBehaviour
     public GameObject LSLSamplePointCounterOutlet;
     public GameObject LSLCCAResultInlet;
 
-    private GameObject currentCluster;
-    public List<float> currentPulses;
+    public GameObject currentCluster;
+    private List<float> currentPulses;
+    private bool blinkContiniously = false;
 
     private float pulsatingLimitSeconds = 6.0f;
     private float deadTime = 1.0f;
@@ -25,11 +26,21 @@ public class ClusterManager : MonoBehaviour
         if (LSLFrequencyOutlet == null) throw new System.Exception("LSLFrequencyOutlet must be defined");
         if (LSLSamplePointCounterOutlet == null) throw new System.Exception("LSLSamplePointCounterOutlet must be defined");
         if (LSLCCAResultInlet == null) throw new System.Exception("LSLCCAResultInlet must be defined");
+        if (currentCluster != null)
+        {
+            currentPulses = currentCluster.GetComponent<ChildrenPulse>().getPulses(); //current cluster is already set, need to get their pulses
+            blinkContiniously = true;
+        }
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if(blinkContiniously)
+        {
+            startLSLInletAndOutlet();
+            return;
+        }
         //User is not looking at cluster, reset evreything to prepare for next time gaze is detected
         if (currentCluster == null)
         {
@@ -58,11 +69,11 @@ public class ClusterManager : MonoBehaviour
         }
     }
 
-    public void clusterLookedAt(GameObject newCluster, List<float> newPulses)
+    public void clusterLookedAt(GameObject newCluster)
     {
         if (currentCluster != null) return; //Don't set new cluster if already set
         currentCluster = newCluster;
-        currentPulses = newPulses;
+        currentPulses = currentCluster.GetComponent<ChildrenPulse>().getPulses();
     }
 
     public void clusterLookedAwayFrom(GameObject oldCluster)
