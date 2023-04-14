@@ -47,7 +47,8 @@ public class Pulsating : MonoBehaviour
 
         //changeColor();
         //MakeFlicker();
-        changeMaterial();
+        //changeMaterial();
+        changeMaterial2();
     }
     private void changeMaterial()
     {
@@ -76,6 +77,22 @@ public class Pulsating : MonoBehaviour
             var temp = material1;
             material1 = material2;
             material2 = temp;
+        }
+    }
+
+
+    private void changeMaterial2()
+    {
+        Debug.Log("changeMaterial2");
+        float colorMix = Mathf.InverseLerp(-1f, 1f, Mathf.Sin((Time.time % 10.0f) * Mathf.PI * rate * 2.0f));
+
+        if (colorMix > 0.5f)
+         {
+             renderer.material = material1;
+        }
+        else
+        {
+            renderer.material = material2;
         }
     }
 
