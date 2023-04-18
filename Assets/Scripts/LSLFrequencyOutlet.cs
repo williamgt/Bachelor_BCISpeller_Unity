@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using LSL4Unity.Utils;
 using UnityEngine;
 
+/**
+ * Class LSLFrequencyOutlet is an LSL outlet for sending values needed for the CCA. This class takes care of putting correct harmonics
+ * in the LSL stream. The number of harmonics is 3 for each letter-cube in a cluster.
+ * 
+ */
 public class LSLFrequencyOutlet : ADoubleOutlet
 {
     private int samplePoint = 0;
-    //private float counter = 0;
     public override List<string> ChannelNames
     {
         get
@@ -17,32 +21,30 @@ public class LSLFrequencyOutlet : ADoubleOutlet
                 "freq2sinh1", "freq2cosh1", "freq2sinh2", "freq2cosh2", "freq2sinh3", "freq2cosh3",
                 "freq3sinh1", "freq3cosh1", "freq3sinh2", "freq3cosh2", "freq3sinh3", "freq3cosh3",
                 "freq4sinh1", "freq4cosh1", "freq4sinh2", "freq4cosh2", "freq4sinh3", "freq4cosh3",
-                "freq5sinh1", "freq5cosh1", "freq5sinh2", "freq5cosh2", "freq5sinh3", "freq5cosh3",
-                /*, "counter"*/};
+                "freq5sinh1", "freq5cosh1", "freq5sinh2", "freq5cosh2", "freq5sinh3", "freq5cosh3",};
             return chanNames;
         }
     }
 
     public GameObject cluster = null;
 
+    //This function is called in super class' FixedUpdate
     protected override bool BuildSample()
     {
         int i = 0;
 
-        if (cluster == null)
+        if (cluster == null) //Only push 0 if no cluster is currently looked at
         {
             for(; i < ChannelNames.Count; i++)
             {
                 sample[i] = 0;
             }
-            //sample[6] = counter; //NBNBNBNBNB
             return true;
         }
 
         samplePoint++;
-        foreach (Transform child in cluster.transform)
+        foreach (Transform child in cluster.transform) //A cluster is looked at, get values related to Y vector for all letter-cubes in cluster
         {
-            //sample[i] = child.gameObject.GetComponent<Pulsating>().getFreq();
             var yValues = child.gameObject.GetComponent<Pulsating>().getYElement(samplePoint);
             sample[i] = yValues.sinh1;
             sample[i + 1] = yValues.cosh1;
@@ -52,7 +54,6 @@ public class LSLFrequencyOutlet : ADoubleOutlet
             sample[i + 5] = yValues.cosh3;
             i += 6;
         }
-        //sample[6] = counter; //NBNBNBNBNB
         return true;
     }
 
@@ -62,15 +63,12 @@ public class LSLFrequencyOutlet : ADoubleOutlet
         base.Start();
     }
 
+    override
+    protected void Update(){ } //Need to override Update because the BaseOutlet runs BuildSample in parent Update before checking which hook to use
+
+
     public void setCluster(GameObject newCluster)
     {
         cluster = newCluster;
     }
-
-    /*private void FixedUpdate()
-    {
-        base.FixedUpdate();
-        counter++;
-        if (counter % 300 == 0) counter = 0;
-    }*/
 }

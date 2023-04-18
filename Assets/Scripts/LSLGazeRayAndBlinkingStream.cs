@@ -10,6 +10,11 @@ namespace ViveSR
     namespace anipal
     {
         namespace Eye
+        /**
+         * Class LSLGazeRayAndBlinkingStream is an LSL outlet for sending double values 
+         * related to Eye Tracking data. Uses BuildSample() to send data which is run 
+         * once every FixedUpdate iteration.
+         */
         {
             public class LSLGazeRayAndBlinkingStream : ADoubleOutlet
             {
@@ -22,8 +27,9 @@ namespace ViveSR
                 public string channelName7;
                 public string channelName8;
 
-                private static float leftOpen, rightOpen;
+                private static float leftOpenness, rightOpenness;
 
+                //Name of channels for LSL stream
                 public override List<string> ChannelNames
                 {
                     get
@@ -42,11 +48,12 @@ namespace ViveSR
                 override
                 protected void Update(){ } //Need to override Update because the BaseOutlet runs BuildSample in parent Update before checking which hook to use
 
+                //This function is called in super class' FixedUpdate
                 protected override bool BuildSample()
                 {
                     //Getting data from SRAnipal about eye openness
-                    SRanipal_Eye.GetEyeOpenness(EyeIndex.LEFT, out leftOpen);
-                    SRanipal_Eye.GetEyeOpenness(EyeIndex.RIGHT, out rightOpen);
+                    SRanipal_Eye.GetEyeOpenness(EyeIndex.LEFT, out leftOpenness);
+                    SRanipal_Eye.GetEyeOpenness(EyeIndex.RIGHT, out rightOpenness);
 
                     // For social use cases, data in local space may be easier to work with
                     var eyeTrackingDataLocal = TobiiXR.GetEyeTrackingData(TobiiXR_TrackingSpace.Local);
@@ -57,8 +64,6 @@ namespace ViveSR
                     // Using gaze direction in local space makes it easier to apply a local rotation
                     // to your virtual eye balls.
                     var eyesDirection = eyeTrackingDataLocal.GazeRay.Direction;
-
-                    Debug.Log("Direction, local " + eyesDirection);
 
                     //Gathering data related to blinking with left, right and both eyes
                     double isLeftBlinking = eyeTrackingDataLocal.IsLeftEyeBlinking ? 1.0 : 0.0;
@@ -73,14 +78,11 @@ namespace ViveSR
                     sample[3] = isLeftBlinking;
                     sample[4] = isRightBlinking;
                     sample[5] = isBlinking;
-                    sample[6] = leftOpen;
-                    sample[7] = rightOpen;
+                    //Sengin data related to eye openness
+                    sample[6] = leftOpenness;
+                    sample[7] = rightOpenness;
 
-                    return true;
-
-                    //}
-
-                    return false;
+                    return true; //Always return true for pushing the most up to date Eye Tracking data
                 }
             }
         }

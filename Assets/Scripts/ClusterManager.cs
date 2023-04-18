@@ -9,10 +9,11 @@ public class ClusterManager : MonoBehaviour
     public GameObject LSLCCAResultInlet;
 
     public GameObject currentCluster;
+    private GameObject prevCluster;
     private List<float> currentPulses;
     private bool blinkContiniously = false;
 
-    public float pulsatingLimitSeconds = 6.0f;
+    public float pulsatingLimitSeconds;
     private float deadTime = 1.0f;
     private float timeSpent = 0.0f;
 
@@ -38,10 +39,11 @@ public class ClusterManager : MonoBehaviour
     {
         if(blinkContiniously)
         {
-            activateFlickering();
+            activateFlickering(currentCluster);
             startLSLInletAndOutlet();
             return;
         }
+       
         //User is not looking at cluster, reset evreything to prepare for next time gaze is detected
         if (currentCluster == null)
         {
@@ -57,7 +59,7 @@ public class ClusterManager : MonoBehaviour
         startPulsating = timeSpent >= deadTime;
         if (startPulsating & !activated)
         {
-            activateFlickering();
+            activateFlickering(currentCluster);
             startLSLInletAndOutlet();
             activated = true;
         }
@@ -66,7 +68,7 @@ public class ClusterManager : MonoBehaviour
         stopPulsating = timeSpent >= deadTime + pulsatingLimitSeconds;
         if (stopPulsating & activated)
         {
-            deactivateFlickering();
+            deactivateFlickering(currentCluster);
             stopLSLInletAndOutlet();
             timeSpent = 0.0f;
         }
@@ -74,19 +76,23 @@ public class ClusterManager : MonoBehaviour
 
     public void clusterLookedAt(GameObject newCluster)
     {
-        if (currentCluster != null) return; //Don't set new cluster if already set
-        currentCluster = newCluster;
+        prevCluster = currentCluster; //If switching directly from one cluster to another, set prev as the current one
+        timeSpent = 0.0f; //Reset timer, because new cluster is looked at
+        
+        currentCluster = newCluster; //Finally setting new cluster and getting the child frequencies
         currentPulses = currentCluster.GetComponent<ChildrenPulse>().getPulses();
     }
 
     public void clusterLookedAwayFrom(GameObject oldCluster)
     {
-        if(GameObject.ReferenceEquals(currentCluster, oldCluster))
-        {
-            deactivateFlickering();
-            stopLSLInletAndOutlet();
-            currentCluster = null;
-        }
+        prevCluster = oldCluster; //Previous cluster is now old cluster
+        currentCluster = null; //Currently not looking at any cluster
+
+        //Need to deactivate and reset evreything
+        deactivateFlickering(prevCluster); 
+        stopLSLInletAndOutlet();
+        resetBoolValues();
+        timeSpent = 0.0f;
     }
 
     private void resetBoolValues()
@@ -100,39 +106,29 @@ public class ClusterManager : MonoBehaviour
     {
         LSLCCAResultInlet.GetComponent<LSLCCAInlet>().setCluster(currentCluster);
         LSLFrequencyOutlet.GetComponent<LSLFrequencyOutlet>().setCluster(currentCluster);
-        /*int i = 0;
-        foreach (Transform child in currentCluster.transform)
-        {
-            child.gameObject.GetComponent<Pulsating>().setRate(currentPulses[i]);
-            i++;
-        }*/
         LSLSamplePointCounterOutlet.GetComponent<LSLSamplePointCounterOutlet>().setIncrementSamplePoint(true);
     }
     private void stopLSLInletAndOutlet()
     {
         //LSLCCAResultInlet.GetComponent<LSLCCAInlet>().setCluster(null);
         LSLFrequencyOutlet.GetComponent<LSLFrequencyOutlet>().setCluster(null);
-        /*foreach (Transform child in currentCluster.transform)
-        {
-            child.gameObject.GetComponent<Pulsating>().setRate(0);
-        }*/
         LSLSamplePointCounterOutlet.GetComponent<LSLSamplePointCounterOutlet>().setIncrementSamplePoint(false);
         LSLSamplePointCounterOutlet.GetComponent<LSLSamplePointCounterOutlet>().resetSamplePoint();
     }
 
-    private void activateFlickering()
+    private void activateFlickering(GameObject cluster)
     {
         int i = 0;
-        foreach (Transform child in currentCluster.transform)
+        foreach (Transform child in cluster.transform)
         {
             child.gameObject.GetComponent<Pulsating>().setRate(currentPulses[i]);
             i++;
         }
     }
 
-    private void deactivateFlickering()
+    private void deactivateFlickering(GameObject cluster)
     {
-        foreach (Transform child in currentCluster.transform)
+        foreach (Transform child in cluster.transform)
         {
             child.gameObject.GetComponent<Pulsating>().setRate(0);
         }

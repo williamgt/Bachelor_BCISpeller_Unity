@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Tobii.G2OM;
 
-public class Pulsating : MonoBehaviour
+public class Pulsating : MonoBehaviour//, IGazeFocusable
 {
     public float rate = 0f; //The rate at which the object is pulsating, aka the frequency
     //public string letter;
@@ -30,19 +31,15 @@ public class Pulsating : MonoBehaviour
         color1 = Color.white;
         //TMPLetter.text = letter;
         renderer.material = material1;
-        //StartCoroutine(Blink());
     }
 
-    IEnumerator Blink()
+    /*public void GazeFocusChanged(bool hasFocus)
     {
-        float interval = 1f / (frequency);
-        while (true)
-        {
-            isWhite = !isWhite;
-            renderer.material.color = isWhite ? Color.white : Color.black;
-            yield return new WaitForSeconds(interval);
-        }
-    }
+        Debug.Log("Looked at box");
+        if (hasFocus) TMPLetter.transform.Translate(new Vector3(0, 2, 0), Space.Self);
+        if (!hasFocus) TMPLetter.transform.Translate(new Vector3(0, -2, 0), Space.Self);
+    }*/
+
     void FixedUpdate()
     {
 
