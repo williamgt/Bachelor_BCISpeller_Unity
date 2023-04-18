@@ -36,22 +36,24 @@ public class LSLCCAInlet : AFloatInlet
         foreach(var e in newSample) Debug.Log("Inlet: " + e);
         int pos = (int)newSample[0];
         string letter = cluster.transform.GetChild(pos).GetComponent<Pulsating>().getLetter();
-        Debug.Log(letter);                                      //Currently only allows new characters to be added
-        //if(TMPWord.text[-1] != letter[0]) TMPWord.text += letter; //TODO make this better
-        if (letter.Equals("<-") && TMPWord.text.Length > 0)
+        Debug.Log(letter);
+
+        //Logicfor spelling words
+        if (letter.Equals("<-") && TMPWord.text.Length > 0) //Backspace, needs text to have more than 0 letters
         {
             TMPWord.text.Remove(TMPWord.text.Length);
         }
-        else if (letter.Equals("_"))
+        else if (letter.Equals("_")) //Space
         {
             TMPWord.text += " ";
         }
-        else
+        else //Else, just add the letter
         {
             TMPWord.text += letter;
         }
     }
 
+    //Setting a new cluster. Used for knowing which letter is being added to the 
     public void setCluster(GameObject newCluster)
     {
         cluster = newCluster;

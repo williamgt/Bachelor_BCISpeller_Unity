@@ -8,9 +8,13 @@ public class ChildrenPulse : MonoBehaviour, IGazeFocusable
     public List<float> pulses;
     public List<string> letters;
     public GameObject clusterManager;
+    
     private bool lookedAt = false;
+    
     private Vector3 startPos;
     private Vector3 endPos;
+
+    private float flyOutRate = -7.0f;
 
 
     //public void GazeFocusChanged(bool hasFocus) => focus = hasFocus;
@@ -37,7 +41,7 @@ public class ChildrenPulse : MonoBehaviour, IGazeFocusable
         if (clusterManager == null) throw new System.Exception("Cluster must have a manager");
 
         startPos = transform.position;
-        endPos = startPos + new Vector3(0, 0, -7);
+        endPos = startPos + new Vector3(0, 0, flyOutRate);
 
         int i = 0;
         foreach (Transform child in transform)
