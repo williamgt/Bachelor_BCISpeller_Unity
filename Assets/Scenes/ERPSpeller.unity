@@ -851,8 +851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LSLSamplePointCounterOutlet: {fileID: 157818553}
   LSLCCAResultInlet: {fileID: 1632803178}
-  currentCluster: {fileID: 0}
-  pulsatingLimitSeconds: 4
+  flickeringLimitSeconds: 4
 --- !u!4 &425129134
 Transform:
   m_ObjectHideFlags: 0
@@ -1427,7 +1426,7 @@ MonoBehaviour:
   moment: 1
   ProcessLastInChunkOnly: 0
   resolver: {fileID: 0}
-  TMPWord: {fileID: 326606178}
+  TMPResultString: {fileID: 326606178}
 --- !u!4 &1632803180
 Transform:
   m_ObjectHideFlags: 0

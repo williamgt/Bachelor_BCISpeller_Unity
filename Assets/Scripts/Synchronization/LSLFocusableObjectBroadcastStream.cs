@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using LSL4Unity.Utils;
 
+/**
+ * LSLFocusableObjectBroadcastStream is an LSL outlet for streaming a focusable object's position when it's looked at.
+ * The objects which have this script in the scene LSLBlinkingStream is deactivated, meaning this script is unused.
+ */
+
 public class LSLFocusableObjectBroadcastStream : ADoubleOutlet
 {
     public string channelName1; //x coordinate
