@@ -106,11 +106,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 137723438509634669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18497e2a6e2bb944eb92f00e1e0e195b, type: 3}
+  m_Script: {fileID: 11500000, guid: b28696a7daed12447bc9cd517fdeb192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 0
-  letter: 
+  frequency: 0
   TMPLetter: {fileID: 3870642810298295083}
   material1: {fileID: 2100000, guid: 4ba45bf45c9b4204e874f73d857c1462, type: 2}
   material2: {fileID: 2100000, guid: 31bd6a0563bd6a245a16409549bff434, type: 2}

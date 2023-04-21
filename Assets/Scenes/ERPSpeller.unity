@@ -341,19 +341,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[2]
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[3]
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[4]
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[5]
-      value: 11
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: letters.Array.data[0]
@@ -693,19 +693,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[2]
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[3]
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[4]
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[5]
-      value: 11
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: letters.Array.data[0]
@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 425129134}
   - component: {fileID: 425129133}
   m_Layer: 0
-  m_Name: ClusterManager
+  m_Name: FlickerAndLSLManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -849,11 +849,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0d25f36f49f2a4eba0ed68145b826a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LSLFrequencyOutlet: {fileID: 201550672}
   LSLSamplePointCounterOutlet: {fileID: 157818553}
   LSLCCAResultInlet: {fileID: 1632803178}
   currentCluster: {fileID: 0}
-  pulsatingLimitSeconds: 2
+  pulsatingLimitSeconds: 4
 --- !u!4 &425129134
 Transform:
   m_ObjectHideFlags: 0
@@ -897,19 +896,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[2]
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[3]
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[4]
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[5]
-      value: 11
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: letters.Array.data[0]
@@ -1508,19 +1507,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[2]
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[3]
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[4]
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[5]
-      value: 11
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: letters.Array.data[0]
@@ -1621,19 +1620,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[2]
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[3]
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[4]
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: pulses.Array.data[5]
-      value: 11
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 8699205009714548436, guid: 1068e294c9081d94cab7c6639063d3b6, type: 3}
       propertyPath: letters.Array.data[0]

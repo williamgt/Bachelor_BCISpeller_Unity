@@ -34,8 +34,8 @@ public class LSLSamplePointCounterOutlet : ADoubleOutlet
     //This function is called in super class' FixedUpdate
     protected override bool BuildSample()
     {
-        if (incrementSamplePoint) samplePoint++;
-        sample[0] = samplePoint;
+        if (incrementSamplePoint) samplePoint++; 
+        sample[0] = samplePoint; //Pushed 0 to outlet unless told to increment
         return true;
     }
     public void setIncrementSamplePoint(bool inc)

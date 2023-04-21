@@ -4,13 +4,16 @@ using LSL4Unity.Utils;
 using UnityEngine;
 
 /**
- * Class LSLFrequencyOutlet is an LSL outlet for sending values needed for the CCA. This class takes care of putting correct harmonics
- * in the LSL stream. The number of harmonics is 3 for each letter-cube in a cluster.
- * 
+ * Class LSLFrequencyOutlet is an LSL outlet for sending values needed for the Y vector used to perform CCA. 
+ * This class takes care of putting correct harmonics in the LSL stream. 
+ * The number of harmonics is 3 for each letter-cube in a cluster.
+ * NB! This class is no longer in use due to the existence of LSLSamplePointCounter
  */
 public class LSLFrequencyOutlet : ADoubleOutlet
 {
+    public GameObject cluster = null;
     private int samplePoint = 0;
+
     public override List<string> ChannelNames
     {
         get
@@ -26,7 +29,6 @@ public class LSLFrequencyOutlet : ADoubleOutlet
         }
     }
 
-    public GameObject cluster = null;
 
     //This function is called in super class' FixedUpdate
     protected override bool BuildSample()
@@ -45,7 +47,7 @@ public class LSLFrequencyOutlet : ADoubleOutlet
         samplePoint++;
         foreach (Transform child in cluster.transform) //A cluster is looked at, get values related to Y vector for all letter-cubes in cluster
         {
-            var yValues = child.gameObject.GetComponent<Pulsating>().getYElement(samplePoint);
+            var yValues = child.gameObject.GetComponent<LetterCubeFlicker>().getYElement(samplePoint);
             sample[i] = yValues.sinh1;
             sample[i + 1] = yValues.cosh1;
             sample[i + 2] = yValues.sinh2;
